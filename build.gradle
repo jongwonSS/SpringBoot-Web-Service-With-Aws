@@ -1,0 +1,31 @@
+buildscript { // 빌드 스크립트 자체를 빌드하는 과정에서 필요한 외부 라이브러리를 클래스패스에 추가하는 메소드
+    ext { // 전역변수 선언
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories { //
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'     // 스프링 부트의 의존성 관리용 플러그인
+
+group 'com.song.webservice'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {      // 의존성들을 어떤 원격 저장소에서 받을지 정함.
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {      // 의존성
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
