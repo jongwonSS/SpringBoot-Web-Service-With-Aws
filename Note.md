@@ -5,6 +5,8 @@ Note
 ### Study Day
 - 2020.01.27
 - 2020.02.03
+- 2020.04.21
+- 2020.04.22
 
 #### Important things
 ***2021.01.27***
@@ -51,7 +53,7 @@ Note
 ***2021.04.21***
   - MyBatis : SQL Mapper, (ORM이 아님)
   - JPA : 인터페이스 (자바 표준 명세)
-    - 객체지향 프로그래밍 언어와 관계형 데이터 베이스의 중간 역활
+    - 객체지향 프로그래밍 언어와 관계형 데이터 베이스의 중간 역할
     - SQL에 종속적이지 않은 개발 가능
   - Spring Data JPA : 모듈
     - JPA <- Hibernate <- Spring Data JPA
@@ -97,3 +99,22 @@ Note
       3) 유니크한 조건이 변경될 경우, PK 전체 수정 필요
   *tip) 생성자와 Builder의 차이*
     생성 시점에 값을 채워주는 역할은 같으나, 생성자의 경우 지금 채워야할 필드가 무엇인지 명확히 지정할 수 없음.
+
+***2021.04.22***
+  - 스프링 Bean 주입 방법
+    1) @Autowired
+    2) setter
+    3) 생성자 : 스프링 권장 - 생성자로 Bean 객체를 받게 하면, @Autowired와 동일한 효과
+  - @RequiredArgsConstructor : final이 선언된 모든 필드를 인자값으로 생성자를 대신 생성
+  - Entitiy 클래스와 거의 유사한 형태여도 Dto 클래스를 추가로 생성하는 이유
+    : Entity 클래스는 DB와 맞닿은 핵심 클래스이기에, 변경이 자주 있을 경우 Cost가 너무 큼
+    -> View Layer와 DB Layer는 역할 분리를 철저하게 할 것
+  - @WebMvcTest
+    - JPA 기능 작동 X
+    - Controller와 ControllerAdvice 등 외부 연동과 관련된 부분만 활성화
+  - @SpringBootTest, TestRestTemplate : JPA 기능 작동
+  - JPA의 영속성 컨텍스트 : 엔티티를 영구 저장하는 환경
+    - JPA의 핵심 내용
+    - JPA의 엔티티 매니저가 활성화된 상태(= Spring Data JPA의 경우, 기본 Option)일 시, 트랜잭션 안에서 DB 데이터를 가져오면, 영속성 컨텍스트 유지
+      즉, 트랜잭션이 끝나는 시점에 해당 테이블에 변경분이 반영되어, 쿼리를 날릴 필요없이 Entity의 데이터 변경만 하면 됨
+    - Dirty Checking : https://jojoldu.tistory.com/415 찾아보자
