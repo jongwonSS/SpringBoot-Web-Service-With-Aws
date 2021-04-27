@@ -118,3 +118,26 @@ Note
     - JPA의 엔티티 매니저가 활성화된 상태(= Spring Data JPA의 경우, 기본 Option)일 시, 트랜잭션 안에서 DB 데이터를 가져오면, 영속성 컨텍스트 유지
       즉, 트랜잭션이 끝나는 시점에 해당 테이블에 변경분이 반영되어, 쿼리를 날릴 필요없이 Entity의 데이터 변경만 하면 됨
     - Dirty Checking : https://jojoldu.tistory.com/415 찾아보자
+
+***2021.04.27***
+  - JPA Auditing
+    - Spring Data JPA에서 시간에 대해서 자동으로 값을 넣어주는 기능
+  - LocalData, LocalDataTime : (Java8부터)기본 날짜 타입 <- Data 타입과, Calendar Class 대체
+  - @MappedSuperclass
+    - JPA Entity 클래스들이 해당 클래스를 상속할 경우, 필드(=변수)를 자동으로 컬럼으로 인식하도록
+  - @CreatedData
+    - Entity가 생성되어 저장될 때, 자동으로 시간 저장
+  - @LastModifiedData
+    - Entity의 값이 변경될 때, 자동으로 시간 저장
+  
+  - Mustache : 클라이언트 템플릿 엔진
+    - 가장 심플한 템플릿 엔진
+    - 장점
+      - 문법이 다른 템플릿 엔진보다 Simple
+      - 로직 코드 사용 불가
+      - Mustache.js, Mustache.java 둘 모두 있어서 클라이언트/서버 사이드 모두 가능
+
+  - 템플릿 엔진 단점 (책 내용)
+    - JSP, Velocity : 스프링 부트에서 권장하지 않는 템플릿엔진 (서버 사이드)
+    - Freemarker : 높은 자유도 === 템플릿 엔진 이상의 기능을 지원하여, 비즈니스 로직이 추가될 수도 있음
+    - Thymeleaf : 문법이 어려움.
